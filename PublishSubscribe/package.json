@@ -1,0 +1,14 @@
+{
+  "name": "learn_rabbitmq",
+  "version": "0.0.1",
+  "description": "learning rabbitmq",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "~3.0.1"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.3"
+  }
+}

@@ -50,6 +50,10 @@ tuto link
 
 - https://www.rabbitmq.com/tutorials/tutorial-two-javascript.html
 
+## Publish/Subscribe
+
+In this part we'll deliver a message to multiple consumers. This pattern is known as "publish/subscribe".
+
 ## Notes
 
 To use dashboard, go to `http://localhost:15672/` and use `guest` as credentials to login
