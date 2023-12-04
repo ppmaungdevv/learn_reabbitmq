@@ -1,3 +1,7 @@
+/* 
+* this file will create a new queue and send to rabbitmq
+*/
+
 var amqp = require('amqplib/callback_api');
 
 // create a connection
@@ -7,7 +11,7 @@ amqp.connect('amqp://rabbit-1', function(error0, connection) {
     throw error0
   }
   console.log('connected to the hole..')
-  // create a channel
+  
   connection.createChannel(function(error1, channel) {
     if (error1) {
       throw error1
@@ -16,7 +20,6 @@ amqp.connect('amqp://rabbit-1', function(error0, connection) {
 
     let queue = 'task_queue', msg = process.argv.slice(2).join(' ') || 'Hello World!'
 
-    // create a queue
     channel.assertQueue(queue, {
       durable: true
     })

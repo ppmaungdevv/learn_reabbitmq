@@ -1,3 +1,7 @@
+/* 
+* this file will listen to queue and do the work
+*/
+
 var amqp = require('amqplib/callback_api');
 
 amqp.connect('amqp://rabbit-1', function (error0, connection) {
@@ -16,6 +20,8 @@ amqp.connect('amqp://rabbit-1', function (error0, connection) {
       durable: true
     })
 
+    channel.prefetch(1) // This tells RabbitMQ not to give more than one message to a worker at a time
+
     console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue)
 
     channel.consume(queue, function (msg) {
@@ -24,11 +30,12 @@ amqp.connect('amqp://rabbit-1', function (error0, connection) {
       console.log(" [x] Received %s", msg.content.toString())
 
       setTimeout(function() {
-        console.log(" [x] Done");
+        console.log(" [x] Done")
+        channel.ack(msg)
       }, secs * 1000)
 
     }, {
-      noAck: true
+      noAck: false
     })
     
   })
